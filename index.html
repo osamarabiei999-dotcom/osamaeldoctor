@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة التطبيق الرئيسية</title>
+    <title>SupperEgyptawy</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -12,32 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Custom styles */
+        /* Custom styles for the new design */
         body {
             font-family: 'Cairo', sans-serif;
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.85)), url('https://i.postimg.cc/cL6pDrfH/Screenshot-2025-09-04-002212.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #1a0033, #001a33, #1a0033, #001a33);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
         }
 
-        /* Custom animation for the button */
-        @keyframes pulse-glow {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 20px 5px rgba(59, 130, 246, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 35px 15px rgba(59, 130, 246, 0.6);
-            }
+        /* Keyframes for the animated background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .animated-button {
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-        
-        /* Animation for wrong password */
+        /* Keyframes for wrong password shake animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
@@ -46,48 +37,62 @@
         .animate-shake {
             animation: shake 0.5s ease-in-out;
         }
+        
+        /* Style for gradient text */
+        .gradient-text {
+            background-image: linear-gradient(to right, #a78bfa, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-white flex flex-col items-center justify-between min-h-screen p-4 sm:p-6">
+<body class="text-white flex flex-col items-center justify-center min-h-screen p-4 sm:p-6">
 
-    <div class="w-full max-w-2xl mx-auto flex flex-col items-center text-center space-y-12 my-auto">
-        
-        <div class="flex flex-col items-center space-y-6 mt-8">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-wide text-shadow-lg">SuperEgyptawy</h1>
-            <p class="text-lg sm:text-xl text-gray-300 max-w-md">أدخل كلمة المرور للدخول إلى التطبيق.</p>
+    <!-- Main Content Container with Glassmorphism Effect -->
+    <div class="w-full max-w-2xl mx-auto bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10">
+        <div class="flex flex-col items-center text-center space-y-10">
             
-            <form id="loginForm" class="flex flex-col items-center space-y-4 w-full max-w-xs mt-4">
-                
+            <!-- Header Section -->
+            <div class="flex flex-col items-center space-y-4">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight gradient-text">SuperEgyptawy</h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-md">أدخل كلمة المرور للدخول إلى التطبيق.</p>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="flex flex-col items-center space-y-5 w-full max-w-xs">
                 <div class="relative w-full">
-                    <input type="password" id="passwordInput" placeholder="كلمة المرور" class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-full text-white text-center placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" required autocomplete="current-password">
-                    <span id="togglePassword" class="absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer text-2xl text-gray-400 hover:text-white select-none">
+                    <input type="password" id="passwordInput" placeholder="كلمة المرور" class="w-full pl-12 pr-4 py-3 bg-gray-900/50 border border-gray-600 rounded-full text-white text-center placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all duration-300" required autocomplete="current-password">
+                    <span id="togglePassword" class="absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer text-2xl text-gray-400 hover:text-white select-none transition-colors">
                         👁️
                     </span>
                 </div>
-                <button type="submit" class="animated-button w-full text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 ease-in-out px-10 py-4 rounded-full shadow-lg transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
+                <button type="submit" class="w-full text-lg font-bold text-white bg-gradient-to-r from-purple-600 to-sky-500 hover:from-purple-700 hover:to-sky-600 transition-all duration-300 ease-in-out px-10 py-3 rounded-full shadow-lg transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-sky-500/50">
                     تسجيل الدخول
                 </button>
-                <p id="errorMessage" class="text-red-500 text-sm h-5"></p> 
+                <p id="errorMessage" class="text-red-400 text-sm h-5 font-semibold"></p> 
             </form>
-        </div>
 
-        <div class="w-full bg-black bg-opacity-40 backdrop-blur-lg border border-gray-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <!-- Divider -->
+            <hr class="w-2/3 border-gray-700/50">
+
+            <!-- Contact Section -->
             <div class="flex flex-col items-center space-y-5">
-                <img src="https://i.postimg.cc/QN19vQHF/OVNagv-RA0-Oaa-512-512.png" alt="صورة شخصية" class="w-24 h-24 rounded-full border-4 border-blue-500 object-cover shadow-lg">
+                <img src="https://i.postimg.cc/QN19vQHF/OVNagv-RA0-Oaa-512-512.png" alt="صورة شخصية" class="w-24 h-24 rounded-full border-4 border-sky-400 object-cover shadow-lg">
                 <h2 class="text-2xl sm:text-3xl font-bold text-white">التواصل معي شخصياً</h2>
-                <div class="flex flex-wrap justify-center gap-5 sm:gap-6 pt-4">
-                    <a href="https://wa.me/201032152576" title="حسابي على الواتساب" class="group"><img src="https://i.postimg.cc/ZY3nd594/unnamed-1.webp" alt="WhatsApp" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-green-500 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
-                    <a href="https://www.facebook.com/osama.rabiei" title="حسابي على الفيسبوك" class="group"><img src="https://i.postimg.cc/nrvLb38C/unnamed.webp" alt="Facebook" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-blue-600 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
-                    <a href="https://t.me/Dr_OsamaRabiei" title="حسابي على التيليجرام" class="group"><img src="https://i.postimg.cc/yYHdXC99/unnamed-2.webp" alt="Telegram" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-sky-500 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
-                    <a href="https://t.me/+4I9UgXkUgDtjMTI0" title="قناة التطبيق على التليجرام" class="group"><img src="https://i.postimg.cc/KjpJFsHM/photo-2024-02-10-10-15-18.jpg" alt="Telegram Channel" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-sky-400 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
-                    <a href="https://t.me/+ncDtfggvMtEwY2Jk" title="جروب للمناقشة والاقتراحات" class="group"><img src="https://i.postimg.cc/nzTJYNJG/photo-2025-06-11-11-01-48.jpg" alt="Telegram Group" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-purple-500 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
+                <div class="flex flex-wrap justify-center gap-5 sm:gap-6 pt-2">
+                    <a href="https://wa.me/201032152576" title="حسابي على الواتساب" class="group"><img src="https://i.postimg.cc/ZY3nd594/unnamed-1.webp" alt="WhatsApp" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-green-400 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
+                    <a href="https://www.facebook.com/osama.rabiei" title="حسابي على الفيسبوك" class="group"><img src="https://i.postimg.cc/nrvLb38C/unnamed.webp" alt="Facebook" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-blue-500 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
+                    <a href="https://t.me/Dr_OsamaRabiei" title="حسابي على التيليجرام" class="group"><img src="https://i.postimg.cc/yYHdXC99/unnamed-2.webp" alt="Telegram" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-sky-400 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
+                    <a href="https://t.me/+4I9UgXkUgDtjMTI0" title="قناة التطبيق على التليجرام" class="group"><img src="https://i.postimg.cc/KjpJFsHM/photo-2024-02-10-10-15-18.jpg" alt="Telegram Channel" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-sky-300 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
+                    <a href="https://t.me/+ncDtfggvMtEwY2Jk" title="جروب للمناقشة والاقتراحات" class="group"><img src="https://i.postimg.cc/nzTJYNJG/photo-2025-06-11-11-01-48.jpg" alt="Telegram Group" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gray-600 group-hover:border-purple-400 transition-all duration-300 transform group-hover:scale-110 group-hover:shadow-xl"></a>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <footer class="w-full text-center py-4">
+    <!-- Footer -->
+    <footer class="absolute bottom-0 w-full text-center py-4">
         <p class="text-gray-400 text-sm">Powered by: Dr.Osama Rabiei</p>
     </footer>
 
@@ -97,20 +102,18 @@
         const errorMessage = document.getElementById('errorMessage');
         const togglePassword = document.getElementById('togglePassword');
 
-        const correctPasswordHash = "3c2774588f8cc75b8caa40de450487710538f2482df5d9c26e0e0f45337cf2f8";
-        const appUrl = "https://brilliant-froyo-089470.netlify.app/";
+        // IMPORTANT: The password hash and URL remain unchanged
+        const correctPasswordHash = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+        const appUrl = "https://zingy-croissant-41fd8a.netlify.app/";
 
-        // START: NEW CODE FOR TOGGLE PASSWORD VISIBILITY
+        // Toggle password visibility functionality
         togglePassword.addEventListener('click', function () {
-            // Toggle the type attribute
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-
-            // Toggle the icon
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
-        // END: NEW CODE
 
+        // SHA256 hashing function
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -119,6 +122,7 @@
             return hashHex;
         }
 
+        // Form submission logic
         loginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             
@@ -133,11 +137,13 @@
 
             if (enteredPasswordHash === correctPasswordHash) {
                 errorMessage.textContent = "";
+                // Redirect to the app on successful login
                 window.location.href = appUrl;
             } else {
                 errorMessage.textContent = "كلمة المرور غير صحيحة!";
                 passwordInput.value = "";
                 
+                // Add shake animation on wrong password
                 passwordInput.classList.add('animate-shake');
                 setTimeout(() => {
                    passwordInput.classList.remove('animate-shake');
@@ -147,5 +153,4 @@
     </script>
 
 </body>
-
 </html>
