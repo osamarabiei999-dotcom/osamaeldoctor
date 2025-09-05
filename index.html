@@ -95,18 +95,16 @@
         const errorMessage = document.getElementById('errorMessage');
         const togglePassword = document.getElementById('togglePassword');
 
-        // IMPORTANT: The password hash and URL remain unchanged
         const correctPasswordHash = "385740178c87a79ca536356be79c443430c08658088287518bed061ff906f084";
         const appUrl = "https://doctor-osama-rabiei102.netlify.app/";
 
-        // Toggle password visibility functionality
+        
         togglePassword.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
 
-        // SHA256 hashing function
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -115,7 +113,7 @@
             return hashHex;
         }
 
-        // Form submission logic
+        
         loginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             
@@ -147,3 +145,4 @@
 
 </body>
 </html>
+
